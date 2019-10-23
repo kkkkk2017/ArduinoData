@@ -1,13 +1,15 @@
-****Develop a C library for a 3G device for Arduino platform****
+Develop a C library for a 3G device for Arduino platform
+=============================
 
 A library for a 3G device to upload data on cloud for a Arduino platform. 
 
-**Prerequisites**
+## Prerequisites
 1. There should have a API for uploading adn fecthing data. 
 2. There should have a SIM card attahced in the Arudion Controller.
 3. There should have a valid SQL server on the cloud.
 
-**Configuration**
+## Configuration
+
 1. Change the API to fit current data:
 
 	1.1 Copy the upload.php and give it a new name.
@@ -20,7 +22,7 @@ A library for a 3G device to upload data on cloud for a Arduino platform.
 
 	POST [url] HTTP/1.1\r\nHost: [host]\r\nContent-Length: [data length]\r\n[data name]=[data value]&[data2 name]=[data2 value](if more than 1 data, and repeat &[data name]=[data value] if more).\r\n
 
-**Use**
+## Use
 
 To start up,
 
