@@ -10,7 +10,7 @@ A library for a 3G device to upload data on cloud for a Arduino platform.
 
 ## Configuration
 
-1. Change the API to fit current data:
+Change the API to fit current data:
 
 	1.1 Copy the upload.php and give it a new name.
 	
@@ -22,7 +22,7 @@ A library for a 3G device to upload data on cloud for a Arduino platform.
 	
 	1.5 Connect to your virtual server and put the file under your websiets directory.
  
-2. Build the POST request string in the library with following format([] is where you need to insert):
+Build the POST request string in the library with following format([] is where you need to insert):
 
 	POST [url] HTTP/1.1\r\nHost: [host]\r\nContent-Length: [data length]\r\n[data name]=[data value]&[data2 name]=[data2 value](if more than 1 data, and repeat &[data name]=[data value] if more).\r\n
 
