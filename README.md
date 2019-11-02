@@ -13,9 +13,13 @@ A library for a 3G device to upload data on cloud for a Arduino platform.
 1. Change the API to fit current data:
 
 	1.1 Copy the upload.php and give it a new name.
+	
 	1.2 Change the $dbusername, $dbpassword, $server, $dbname, $usertable to your database information.
+	
 	1.3 Change $lon, $lag, $time to the data attribute name that you need and change $_GET[your attribute name].
+	
 	1.4 Change the $sql to the INSERT SQL command to insert your data to your database table.
+	
 	1.5 Connect to your virtual server and put the file under your websiets directory.
  
 2. Build the POST request string in the library with following format([] is where you need to insert):
