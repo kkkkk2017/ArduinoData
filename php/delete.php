@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>upload data page</title>
+    <title>delete empty data page</title>
 </head>
 <body>
 <?php
@@ -11,26 +11,28 @@
     $dbname="demo";
     $usertable= "test";
 
-    $lon=$_GET['lon'];
-    $lag=$_GET['lag'];
-    $time=$_GET['time'];
-
     $dbconnect = mysqli_connect($server, $dbusername, $dbpassword);
     if(!$dbconnect){
         DIE ('Unable to connect to database! Please try again later.');
     }
+
     $dbselect = mysqli_select_db($dbconnect, $dbname);
     if(!$dbselect){
         DIE ('Unable to get the database! Please try again later.');
     }
-    $sql = "INSERT INTO ".$usertable." (lon, lag, time)  values('".$lon."','".$lag."','".$time."');";
 
+    $sql = "DELETE FROM $usertable WHERE lag=' ' AND lon=' ' AND time=' '";
     if($dbconnect -> query($sql) != TRUE){
         echo "Error: " . $sql . "<br>" . $dbconnect->error;
     }
 
-    echo "data inserted";
+
+    $records = mysqli_query($dbconnect, $sql);
+
+    echo "delete empty data";
 
     $dbconnect->close();
 ?>
+</body>
+</html>
 
