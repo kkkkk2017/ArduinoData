@@ -7,10 +7,13 @@
 
 String url="http://myarduinosite.tk/";
 String port="80";
-String request="POST /upload.php HTTP/1.1\r\n";
-String host="Host: myarduinosite.tk\r\n";
+String ip="52.65.219.251";
+String post_request="POST /upload.php HTTP/1.1";
+String get_request="GET /fetch.php HTTP/1.1";
+String host="Host: myarduinosite.tk";
+String type = "Content-Type: application/x-www-form-urlencoded; charset=UTF-8";
 String len="Content-Length: ";
-String params="lag=\"9.099743\"&lon=\"33.215467\"&time=\"11:00:08 PM\"";
+String params="lag=\"12:12212\"&lon=\"13:4321\"&time=\"11:00:08 PM\"";
 
 SoftwareSerial mySerial = SoftwareSerial(TX, RX);
 SoftwareSerial *ss = &mySerial;
@@ -26,11 +29,10 @@ void setup() {
   dtran.setBaudrate(4800);
   delay(500);
   
-  String conStr = request+host+len+params.length()+" \r\n\r\n"+params; 
-  if(dtran.sendHTTP(conStr)){
+  if(dtran.sendHTTP(post_request, host, type, len, params)){
     delay(1000);
     digitalWrite(LedPin, HIGH);
-    dtran.sendMessage("+61422540224", "Hi! This is a testing message.");
+    dtran.sendMessage();
   } else {
     digitalWrite(LedPin, LOW);
     Serial.println("Upload failed.");
