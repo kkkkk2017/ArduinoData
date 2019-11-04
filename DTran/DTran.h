@@ -17,13 +17,14 @@ class DTran
 	void begin(Stream &port);
 	void setBaudrate(uint16_t baud);
 	void setUp();
-	void sendMessage(String phone_number, String message);
-	bool sendHTTP(String request_string);
+	void sendMessage();
+	bool sendHTTP(String request, String host, String type, String len, String params);
 	void updateSerial();
+	void closeHTTP();
 
 private:
 	Stream *_mySerial;
-
+	char replyBuffer[255];
     
 };
 
