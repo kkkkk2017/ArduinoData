@@ -5,15 +5,9 @@
 #include <DTran.h>
 #include <SoftwareSerial.h>
 
-String url="http://myarduinosite.tk/";
-String port="80";
-String ip="52.65.219.251";
-String post_request="POST /upload.php HTTP/1.1";
-String get_request="GET /fetch.php HTTP/1.1";
-String host="Host: myarduinosite.tk";
-String type = "Content-Type: application/x-www-form-urlencoded; charset=UTF-8";
-String len="Content-Length: ";
-String params="lag=\"12:12212\"&lon=\"13:4321\"&time=\"11:00:08 PM\"";
+String url="myarduinosite.tk";
+String request="/upload.php";
+String params[] = {"lag=43.13423412", "lon=-0.4232","time=11:00 PM GMT+9"};
 
 SoftwareSerial mySerial = SoftwareSerial(TX, RX);
 SoftwareSerial *ss = &mySerial;
@@ -24,22 +18,21 @@ void setup() {
   ss->begin(4800);
 
   digitalWrite(LedPin, LOW);
+  while(Serial.available());
   
   dtran.begin(*ss);
   dtran.setBaudrate(4800);
-  delay(500);
+  dtran.setUp();
   
-  if(dtran.sendHTTP(post_request, host, type, len, params)){
-    delay(1000);
-    digitalWrite(LedPin, HIGH);
-    dtran.sendMessage();
-  } else {
-    digitalWrite(LedPin, LOW);
-    Serial.println("Upload failed.");
-    }
+  delay(100);
+  dtran.decodeParameter(params);
+  
+  delay(500);
+  dtran.sendHTTP(url, request);
 }
 
 void loop(){
-  dtran.updateSerial();
+   dtran.updateSerial();
+
 }
 
