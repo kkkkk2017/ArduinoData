@@ -31,24 +31,24 @@ Build the POST request string in the library with following format([] is where y
 To start up,
 
 	1. Create the library object with:
-		SMS_lib sms = SMS_lib();
+		DTran dtran = DTran();
 		
   	2. Put the software serial to begin with:
-		sms.Begin(mySerial);
+		begin(mySerial);
 		
   	3. Set the baud rate for the serial with:
-		sms.setBaudrate(4800);
+		  setBaudrate(4800);
   
   	4. Set up the controller with:
 		setUp();
 To send SMS, 
 
-	call sendMessage() function with your phone number and the sending message as the function paramete, for example,
-	sendMessage("+61xxxxxxxxx", "testing message");
+	change the phone_number and message in the library and call sendMessage() function
+	sendMessage();
 	
 To send HTTP request,
 
-	call sendHTTP() function with your POST reqeust string, for example,
-	sendHTTP("POST xxxxxxxxxxxxxxxxx");
+	call decodePrameter() function to decode your paramaters with passing the parameters then call sendHTTP() function with your url and reqeust page, for example,
+	sendHTTP("myarduinosite.tk", "/upload.php");
 
 
