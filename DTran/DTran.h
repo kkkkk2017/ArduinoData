@@ -28,7 +28,9 @@ class DTran
 	void setBaudrate(uint16_t baud);
 	void setUp();
 	void sendMessage(String phone_number, String message);
+//attend three time if failed
 	void sendHTTP(String url, String request);
+
 	void updateSerial();
 	bool reset();
 	bool checkReplyTimeout(int timeout, const char* expect);
