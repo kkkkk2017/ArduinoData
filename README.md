@@ -4,9 +4,9 @@ Develop a C library for a 3G device for Arduino platform
 A library for a 3G device to upload data on cloud for a Arduino platform. 
 
 ## Prerequisites
-1. There should have a API(application programming interface) for uploading adn fecthing data. 
+1. There should have a API(application programming interface - the website that communicate with the database server) for uploading adn fecthing data. 
 2. There should have a SIM card attahced in the Arudion Controller.
-3. There should have a valid MySQL server on the cloud.
+3. There should have a MySQL server on the cloud.
 
 ## Configuration
 
@@ -42,13 +42,14 @@ To start up,
 		This functino is doing the initial set up and checking the SIM card and network status.
 To send SMS, 
 
-	1. change the phone_number and message in the library and call sendMessage() function
-	dtran.sendMessage();
-	2. Or you can call the sendMessage(String phone_number, String message) with the phone number and the message.
+	Call the sendMessage(String phone_number, String message) with the phone number and the message.
 	
 To send HTTP request,
+
 	1. The parameters are putted in a String array in a format "valuename=value"; String[] parameters;	
+	
 	2. call decodePrameter() function to decode your paramaters with passing the parameters then call sendHTTP() function with your url and reqeust page, for example,
-	sendHTTP("myarduinosite.tk", "/upload.php");
+	sendHTTP("myarduinosite.tk", "/upload.php", phone_number);
+	The sendHTTP() function will send the data and send the SMS to the phone_number with the status message.
 
 
