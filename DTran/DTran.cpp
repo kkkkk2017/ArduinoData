@@ -58,7 +58,7 @@ void DTran::sendMessage(String phone_number, String message){
 
 /* This method can not be bool type, otehrwise the HTTP function does not sent
 or the AT command does not work*/
-void DTran::sendHTTP(String url, String request) {
+void DTran::sendHTTP(String url, String request, String phone_number) {
 	if (!status) {return;}
 
 	updateSerial();
@@ -77,7 +77,7 @@ void DTran::sendHTTP(String url, String request) {
 	if (!result) {
 		Serial.println(MESSAGE_FAILED);
 		digitalWrite(LEDPIN, HIGH);
-		sendMessage(PHONE_NUMBER, MESSAGE_FAILED);
+		sendMessage(phone_number, MESSAGE_FAILED);
 		return;
 	}
 

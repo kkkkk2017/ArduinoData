@@ -11,8 +11,7 @@
 
 #define LEDPIN 13
 
-//Customise the phone number and message
-#define PHONE_NUMBER "+61422540224"
+//Customise the messages
 #define MESSAGE_SUCCESS "Data Uploaded"
 #define MESSAGE_FAILED "HTTP Failed"
 #define MESSAGE_UPLOAD_FAILED "Upload Failed"
@@ -28,8 +27,7 @@ class DTran
 	void setBaudrate(uint16_t baud);
 	void setUp();
 	void sendMessage(String phone_number, String message);
-//attend three time if failed
-	void sendHTTP(String url, String request);
+	void sendHTTP(String url, String request, String phone_number);
 
 	void updateSerial();
 	bool reset();
