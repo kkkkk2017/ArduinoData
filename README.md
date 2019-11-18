@@ -4,9 +4,9 @@ Develop a C library for a 3G device for Arduino platform
 A library for a 3G device to upload data on cloud for a Arduino platform. 
 
 ## Prerequisites
-1. There should have a API for uploading adn fecthing data. 
+1. There should have a API(application programming interface) for uploading adn fecthing data. 
 2. There should have a SIM card attahced in the Arudion Controller.
-3. There should have a valid SQL server on the cloud.
+3. There should have a valid MySQL server on the cloud.
 
 ## Configuration
 
@@ -20,13 +20,9 @@ Change the API to fit current data:
 	
 	1.4 Change the $sql to the INSERT SQL command to insert your data to your database table.
 	
-	1.5 Connect to your virtual server and put the file under your websiets directory.
- 
-Build the POST request string in the library with following format([] is where you need to insert):
+	1.5 Connect to your virtual web server (The example project is using Apache) and put the file under your websites directory.
 
-	POST [url] HTTP/1.1\r\nHost: [host]\r\nContent-Length: [data length]\r\n[data name]=[data value]&[data2 name]=[data2 value](if more than 1 data, and repeat &[data name]=[data value] if more).\r\n
-
-## Use
+## Use in Arduino program
 
 To start up,
 
@@ -34,21 +30,25 @@ To start up,
 		DTran dtran = DTran();
 		
   	2. Put the software serial to begin with:
-		begin(mySerial);
+		dtran.begin(mySerial);
+		This function passing the serial to the library so it can start the operations. 
 		
   	3. Set the baud rate for the serial with:
-		  setBaudrate(4800);
+		  dtran.setBaudrate(4800);
+		  The baudrate can only set with 4800. 
   
   	4. Set up the controller with:
 		setUp();
+		This functino is doing the initial set up and checking the SIM card and network status.
 To send SMS, 
 
-	change the phone_number and message in the library and call sendMessage() function
-	sendMessage();
+	1. change the phone_number and message in the library and call sendMessage() function
+	dtran.sendMessage();
+	2. Or you can call the sendMessage(String phone_number, String message) with the phone number and the message.
 	
 To send HTTP request,
-
-	call decodePrameter() function to decode your paramaters with passing the parameters then call sendHTTP() function with your url and reqeust page, for example,
+	1. The parameters are putted in a String array in a format "valuename=value"; String[] parameters;	
+	2. call decodePrameter() function to decode your paramaters with passing the parameters then call sendHTTP() function with your url and reqeust page, for example,
 	sendHTTP("myarduinosite.tk", "/upload.php");
 
 
